@@ -31,6 +31,11 @@ if (!process.env.CI && argv.indexOf('--coverage') < 0) {
   argv.push('--watch');
 }
 
+const appRootIndex = args.findIndex(arg => arg.startsWith('--appRoot='));
+if (appRootIndex >= 0) {
+  argv.splice(appRootIndex, 1);
+}
+
 // @remove-on-eject-begin
 // This is not necessary after eject because we embed config into package.json.
 const createJestConfig = require('./utils/createJestConfig');
@@ -41,7 +46,7 @@ argv.push(
   JSON.stringify(
     createJestConfig(
       relativePath => path.resolve(__dirname, '..', relativePath),
-      path.resolve(paths.appSrc, '..'),
+      path.resolve(paths.appRoot),
       false
     )
   )
