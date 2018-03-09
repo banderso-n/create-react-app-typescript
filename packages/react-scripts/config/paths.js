@@ -64,7 +64,7 @@ module.exports = {
   testsSetup: resolveApp(appRoot + 'src/setupTests.ts'),
   appNodeModules: resolveApp('node_modules'),
   appTsConfig: resolveApp(appRoot + 'tsconfig.json'),
-  appTsLint: resolveApp(appRoot + 'tslint.json'),
+  appTsLint: resolveApp('tslint.json'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
 };
@@ -88,7 +88,7 @@ module.exports = {
   appNodeModules: resolveApp('node_modules'),
   appTsConfig: resolveApp(appRoot + 'tsconfig.json'),
   appTsTestConfig: resolveApp(appRoot + 'tsconfig.test.json'),
-  appTsLint: resolveApp(appRoot + 'tslint.json'),
+  appTsLint: resolveApp('tslint.json'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
   // These properties only exist before ejecting:
