@@ -74,6 +74,7 @@ module.exports = (resolve, rootDir, isEjecting) => {
     'coverageReporters',
     'coverageThreshold',
     'snapshotSerializers',
+    'modulePaths',
   ];
   if (overrides) {
     supportedKeys.forEach(key => {
