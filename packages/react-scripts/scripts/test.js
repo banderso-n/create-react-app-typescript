@@ -31,7 +31,7 @@ if (!process.env.CI && argv.indexOf('--coverage') < 0) {
   argv.push('--watch');
 }
 
-const appRootIndex = args.findIndex(arg => arg.startsWith('--appRoot='));
+const appRootIndex = argv.findIndex(arg => arg.startsWith('--appRoot='));
 if (appRootIndex >= 0) {
   argv.splice(appRootIndex, 1);
 }
