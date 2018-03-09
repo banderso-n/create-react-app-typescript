@@ -12,6 +12,10 @@ const path = require('path');
 const fs = require('fs');
 const url = require('url');
 
+const args = process.argv.slice(2);
+const appRootIndex = args.findIndex(arg => arg.startsWith('--appRoot='));
+const appRoot = (appRootIndex < 0) ? '' : ensureSlash(args[appRootIndex].split('=').pop(), true);
+
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebookincubator/create-react-app/issues/637
 const appDirectory = fs.realpathSync(process.cwd());
@@ -49,17 +53,17 @@ function getServedPath(appPackageJson) {
 // config after eject: we're in ./config/
 module.exports = {
   dotenv: resolveApp('.env'),
-  appBuild: resolveApp('build'),
-  appPublic: resolveApp('public'),
-  appHtml: resolveApp('public/index.html'),
-  appIndexJs: resolveApp('src/index.tsx'),
+  appBuild: resolveApp(appRoot + 'build'),
+  appPublic: resolveApp(appRoot + 'public'),
+  appHtml: resolveApp(appRoot + 'public/index.html'),
+  appIndexJs: resolveApp(appRoot + 'src/index.tsx'),
   appPackageJson: resolveApp('package.json'),
-  appSrc: resolveApp('src'),
+  appSrc: resolveApp('.'),
   yarnLockFile: resolveApp('yarn.lock'),
-  testsSetup: resolveApp('src/setupTests.ts'),
+  testsSetup: resolveApp(appRoot + 'src/setupTests.ts'),
   appNodeModules: resolveApp('node_modules'),
-  appTsConfig: resolveApp('tsconfig.json'),
-  appTsLint: resolveApp('tslint.json'),
+  appTsConfig: resolveApp(appRoot + 'tsconfig.json'),
+  appTsLint: resolveApp(appRoot + 'tslint.json'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
 };
@@ -71,18 +75,18 @@ const resolveOwn = relativePath => path.resolve(__dirname, '..', relativePath);
 module.exports = {
   dotenv: resolveApp('.env'),
   appPath: resolveApp('.'),
-  appBuild: resolveApp('build'),
-  appPublic: resolveApp('public'),
-  appHtml: resolveApp('public/index.html'),
-  appIndexJs: resolveApp('src/index.tsx'),
+  appBuild: resolveApp(appRoot + 'build'),
+  appPublic: resolveApp(appRoot + 'public'),
+  appHtml: resolveApp(appRoot + 'public/index.html'),
+  appIndexJs: resolveApp(appRoot + 'src/index.tsx'),
   appPackageJson: resolveApp('package.json'),
-  appSrc: resolveApp('src'),
+  appSrc: resolveApp('.'),
   yarnLockFile: resolveApp('yarn.lock'),
-  testsSetup: resolveApp('src/setupTests.ts'),
+  testsSetup: resolveApp(appRoot + 'src/setupTests.ts'),
   appNodeModules: resolveApp('node_modules'),
-  appTsConfig: resolveApp('tsconfig.json'),
-  appTsTestConfig: resolveApp('tsconfig.test.json'),
-  appTsLint: resolveApp('tslint.json'),
+  appTsConfig: resolveApp(appRoot + 'tsconfig.json'),
+  appTsTestConfig: resolveApp(appRoot + 'tsconfig.test.json'),
+  appTsLint: resolveApp(appRoot + 'tslint.json'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
   // These properties only exist before ejecting:
