@@ -74,6 +74,7 @@ module.exports = (resolve, rootDir, isEjecting) => {
     'coverageReporters',
     'coverageThreshold',
     'snapshotSerializers',
+    'moduleNameMapper',
     'modulePaths',
   ];
   if (overrides) {
